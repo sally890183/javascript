@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>猜數字挑戰賽</title>
+    <style>
+        body {
+            background-color: hwb(58 73% 3%);
+            text-align: center;
+
+        }
+
+        #result{
+            background-color: bisque;
+            width: 300px;
+            padding: 80px 0;
+            margin: 12px auto ;
+            border-radius: 12px;
+            border: 1px black solid;
+            text-align: center;
+            
+        }
+    </style>
+
+
+
+
+</head>
+<body>
+    <h1>猜數字挑戰賽!</h1>
+    <h3 style="display: inline-block ; background-color: brown;color:aliceblue">遊戲說明</h3><br>
+    <p>猜一個0-100間的數字，遊戲總共五次機會</p>
+    <label for="number">請猜一個數字</label>
+    <input type="number" id="number" style="text-align: center;">
+    <button id="answer" onclick="answer()">送出</button>
+    <div id="result">
+    </div>
+    <button id="restart" onclick="restartbtn">重新開始</button>
+    <h3 id="guesscount"></h3>
+
+
+
+
+    <script>
+        function answer() {
+            let number = numberE1.value;
+
+            if (number=="")
+                {alert ("輸入不能為空");
+                return;
+            }
+
+            //將次數進行累加
+            count++ ;
+
+            if (number==computer)
+                {resultE1.innerHTML="答對了!";}
+            else{
+
+                guessCountE1.innerHTML=`猜錯 ${count}次`;
+                if (count==maxCount){
+                    resultE1.innerHTML=`遊戲結束<br>
+                    正確答案為${computer}<br>
+                    請重新開始遊戲`;
+                    return ;
+                }
+                else{
+                    if (numberE1.value<computer)
+                    {resultE1.innerHTML="猜大一點";}
+                    else
+                    {resultE1.innerHTML="猜小一點";}
+            }}
+
+
+        }
+
+        const numberE1=document.querySelector("#number");
+        const answerbtnE1=document.querySelector("#answer");
+        const resultE1=document.querySelector("#result");
+        const guessCountE1=document.querySelector("#guesscount");
+        const restartbtn=document.querySelector("#restart");
+
+        restartbtn.addEventListener("click",()=>{
+            count=0;
+            resultE1.innerHTML="";
+            guessCountE1.innerHTML="";
+            numberE1.value="";
+        });
+
+        const maxCount = 5;
+        let count=0;
+        let computer = 50;
+
+
+        console.log(numberE1,answerbtnE1,guessCountE1,restartbtn)
+
+    </script>
+
+
+</body>
+</html>
